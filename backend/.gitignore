@@ -1,0 +1,65 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Node.js dependencies
+backend/node_modules/
+backend/.env
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# Build files
+dist/
+DashboardOld.jsx
+
+# Dependency directories
+bower_components/
+.venv/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE files
+*.swp
+*.swo
+*.idea/
+*.vscode/
+*.code-workspace
+
+# Coverage directory used by testing tools
+coverage/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Generated files
+*.lock
+*.bak
+
+# TypeScript
+*.tsbuildinfo
+
+# Custom ignore patterns
+custom-folder/
+custom-file.ext
+
+# Ignore specific database or data files
+*.sqlite
+*.sqlite3
+db.json
+
+# Exclude all hidden files, except `.gitignore` itself
+.*
+!.gitignore
