@@ -10,7 +10,7 @@ const app = express();
 
 // CORS configuration
 app.use(cors({
-    origin: ['https://rapidcab-frontend.onrender.com', 'http://localhost:5173'],
+    origin: ['https://maargi.vercel.app/', 'http://localhost:5173'],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization']
