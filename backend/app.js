@@ -10,7 +10,7 @@ const app = express();
 
 // CORS configuration
 app.use(cors({
-    origin: ['https://maargi.vercel.app/', 'http://localhost:5173'],
+    origin: ['https://maargi.vercel.app/', 'http://localhost:5173',`${process.env.FRONTEND_URL}`,'https://maargi.onrender.com/'],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization']
