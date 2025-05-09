@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import autoImg from '../assets/auto.png'
 import bike from '../assets/bike.png'
 import car from '../assets/car.png'
+import driverImg from '../assets/driver.jpg'
 const CaptainDetails = (props) => {
 
  const { captain }= useContext(CaptainDataContext)
@@ -25,7 +26,7 @@ const handleBackToAccept = ()=>{
     </h5>}
     <div className="flex p-6 md:mb-6 w-full items-center gap-10 justify-between">
             <div className="flex -ml-6 items-center gap-2  justify-start">
-                <img className="h-14 w-14 md:h-24 md:w-24 rounded-full object-cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeQjcWR08VdmycDnWSEu8hC5qrduR62zNIhg&s" alt="" />
+                <img className="h-14 w-14 md:h-24 md:w-24 rounded-full object-cover" src={driverImg} alt="" />
                 <h4 className="text-lg  md:text-2xl font-medium text-gray-700 ">{capname}</h4>
             </div>
             <div>

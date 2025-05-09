@@ -62,7 +62,7 @@ const CaptainLogin = () => {
               handleSubmit(e);
             }}
           >
-            <h1 className="text-3xl font-bold text-center mb-6">Captain Login</h1>
+            <h1 className="text-3xl font-bold text-center mb-6">Saarthi Login</h1>
             <h3 className="text-lg font-medium mb-2">What&apos;s your email</h3>
             <input
               className="bg-[#eeeeee] px-4 border w-full rounded text-lg placeholder:text-base py-2 mb-5"
@@ -109,7 +109,7 @@ const CaptainLogin = () => {
             </button>
           </form>
           <p className="text-center">
-            Want to Join as a Captain?
+            Want to Join as a Saarthi ?
             <Link to="/captain-signup" className="text-blue-600 text-base pl-2">
               Sign Up
             </Link>

@@ -65,7 +65,7 @@ const Dashboard = () => {
     if (vehiclePanel) {
       gsap.to(vehiclePanelRef.current, {
         visibility: "visible",
-        height: "20rem",
+        height: "24rem",
       });
     } else {
       gsap.to(vehiclePanelRef.current, {
