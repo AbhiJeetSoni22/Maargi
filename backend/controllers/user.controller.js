@@ -73,4 +73,21 @@ async function logoutUser(req, res) {
       return res.status(500).json({ error: 'Error during logout' });
   }
 }
-export { registerUser,loginUser,changePassword,getUserProfile,logoutUser}
+async function forgetPassword(req, res) {
+  try {
+    const { email, newPassword } = req.body;
+    if (!email || !newPassword) {
+      return res.status(400).json({ error: "Email and new password are required" });
+    }
+    const user = await User.findOne({ email }).select('+password');
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    user.password = newPassword;
+    await user.save();
+    res.status(200).json({ success: true, msg: "Password reset successfully" });
+  } catch (error) {
+    res.status(500).json({ error: "Error during password reset" });
+  }
+}
+export { registerUser, loginUser, changePassword, getUserProfile, logoutUser, forgetPassword }

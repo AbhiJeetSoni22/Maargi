@@ -3,7 +3,6 @@ import { useState, useContext } from "react";
 import axios from "axios";
 import { UserDataContext } from "../context/UserContext";
 
-
 const UserLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -46,8 +45,6 @@ const UserLogin = () => {
 
   return (
     <>
-      
-
       <div className="flex flex-col justify-center items-center p-7">
         <div className="mb-5">
           <form
@@ -69,7 +66,15 @@ const UserLogin = () => {
               placeholder="gmail@example.com"
               required
             />
-            <h3 className="text-lg font-medium mb-2">Enter Password</h3>
+            <div className="flex justify-between items-center mb-2">
+              <h3 className="text-lg font-medium">Enter Password</h3>
+              <Link 
+                to="/forgot-password" 
+                className="text-blue-600 text-sm hover:underline"
+              >
+                Forgot Password?
+              </Link>
+            </div>
             <input
               className="bg-[#eeeeee] px-4 border w-full rounded text-lg placeholder:text-base py-2 mb-5"
               type="password"
