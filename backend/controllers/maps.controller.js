@@ -19,11 +19,18 @@ const getCoordinates = async (req, res) => {
 
 const getAddressesDistanceTime = async (req, res) => {
   const { origin, destination } = req.query;
+
   try {
-    const distanceTime = await getDistanceTime(origin, destination);
+    // STEP 1: Pehle dono address ko coordinates (lat/lng) mein convert karein
+    const originCoords = await getAddressCoordinate(origin);
+    const destinationCoords = await getAddressCoordinate(destination);
+
+    // STEP 2: Ab ye coordinates 'getDistanceTime' ko bhejein
+    const distanceTime = await getDistanceTime(originCoords, destinationCoords);
+
     res.status(200).json(distanceTime);
   } catch (error) {
-    console.error(error);
+    console.error("Error in getAddressesDistanceTime:", error.message);
     res.status(404).json({ error: "Distance and time not found" });
   }
 }

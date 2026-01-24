@@ -1,44 +1,35 @@
 import { Ride } from "../models/ride.model.js";
-import { getDistanceTime } from "./maps.service.js";
 import crypto from 'crypto';
 import { sendMessageToSocketId } from "../socket.js";
 import { User } from "../models/user.model.js"
+import { getAddressCoordinate, getDistanceTime } from "./maps.service.js";
+
 async function getFare(pickup, destination) {
     if (!pickup || !destination) {
         throw new Error("Pickup and destination are required");
     }
 
-    const distanceTime = await getDistanceTime(pickup, destination);
+    // STEP 1: Pehle dono addresses ke coordinates nikalein
+    const pickupCoords = await getAddressCoordinate(pickup);
+    const destinationCoords = await getAddressCoordinate(destination);
 
-    // Extract numeric values from the distance and time strings
-    const distance = parseFloat(distanceTime?.distance?.replace(' km', '')) || 0;  // Remove ' km' and convert to number
-    const time = parseFloat(distanceTime?.time?.replace(' mins', '')) || 0;  // Remove ' mins' and convert to number
+    // STEP 2: Coordinates ko use karke distance/time nikalein
+    const distanceTime = await getDistanceTime(pickupCoords, destinationCoords);
 
-    const baseFare = {
-        auto: 25,
-        car: 35,
-        bike: 15,
-    };
+    // Numeric conversion
+    const distance = parseFloat(distanceTime.distance.replace(' km', '')) || 0;
+    const time = parseFloat(distanceTime.time.replace(' mins', '')) || 0;
 
-    const perKmRate = {
-        auto: 10,
-        car: 15,
-        bike: 5,
-    };
-
-    const perMinRate = {
-        auto: 2,
-        car: 3,
-        bike: 1,
-    };
+    const baseFare = { auto: 25, car: 35, bike: 15 };
+    const perKmRate = { auto: 10, car: 15, bike: 5 };
+    const perMinRate = { auto: 2, car: 3, bike: 1 };
 
     const fare = {
-        auto: baseFare.auto + perKmRate.auto * distance + perMinRate.auto * time,
-        car: baseFare.car + perKmRate.car * distance + perMinRate.car * time,
-        bike: baseFare.bike + perKmRate.bike * distance + perMinRate.bike * time,
+        auto: Math.round(baseFare.auto + perKmRate.auto * distance + perMinRate.auto * time),
+        car: Math.round(baseFare.car + perKmRate.car * distance + perMinRate.car * time),
+        bike: Math.round(baseFare.bike + perKmRate.bike * distance + perMinRate.bike * time),
     };
 
-   
     return fare;
 }
 
