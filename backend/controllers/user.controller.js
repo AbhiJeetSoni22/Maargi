@@ -2,6 +2,8 @@ import { User } from "../models/user.model.js";
 import { createUser } from "../services/user.service.js";
 import { validationResult } from "express-validator";
 import BlacklistingToken from "../models/blacklistingToken.model.js";
+
+
 async function registerUser(req,res){
    try{
      const errors =validationResult(req)
